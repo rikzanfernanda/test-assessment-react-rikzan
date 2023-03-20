@@ -172,7 +172,7 @@ function generatePlusOddNumber(n) {
     let last = 1
     for (let i = 0; i < n; i++) {
         result.push(last)
-        last = last + ((i * 2) + 1)
+        last = last + (i * 2 + 1)
     }
 
     return result
@@ -276,7 +276,7 @@ function getSmaller(array) {
             smaller = array[i]
         }
     }
-    
+
     return smaller
 }
 
@@ -305,7 +305,7 @@ function main() {
     console.log('==============================')
 
     // 4
-    console.log(getValuesFromStringOfArray("20,21, 80a,21, 5d5, 31 22"))
+    console.log(getValuesFromStringOfArray('20,21, 80a,21, 5d5, 31 22'))
 }
 
 // main()
@@ -318,5 +318,5 @@ module.exports = {
     generatePlusOddNumber,
     generateFibonacci,
     generatePlusFibonacciNumber,
-    getValuesFromStringOfArray,
+    getValuesFromStringOfArray
 }
