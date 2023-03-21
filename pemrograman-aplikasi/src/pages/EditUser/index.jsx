@@ -35,7 +35,6 @@ const EditUser = () => {
     }, [id])
 
     useEffect(() => {
-        console.log('first')
         getUser()
     }, [getUser])
 

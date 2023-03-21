@@ -54,7 +54,7 @@ const UsersTable = ({ users }) => {
                                     <TableCell>{item.name}</TableCell>
                                     <TableCell>{item.address}</TableCell>
                                     <TableCell>
-                                        {item.gender === 'p'
+                                        {item.gender === 'l'
                                             ? 'Pria'
                                             : 'Wanita'}
                                     </TableCell>

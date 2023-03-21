@@ -74,7 +74,7 @@ const UserDetail = (props) => {
                             <TableRow>
                                 <TableCell>Gender</TableCell>
                                 <TableCell align="right">
-                                    {user.gender === 'p' ? 'Pria' : 'Wanita'}
+                                    {user.gender === 'l' ? 'Pria' : 'Wanita'}
                                 </TableCell>
                             </TableRow>
                             <TableRow>
