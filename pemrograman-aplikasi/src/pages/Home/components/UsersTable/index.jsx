@@ -15,7 +15,9 @@ import { useState } from 'react'
 import dayjs from 'dayjs'
 import UserDetail from '../UserDetail'
 import { useNavigate } from 'react-router-dom'
-import { PATH } from '../../../../config/path'
+import { API, PATH } from '../../../../config/path'
+import http from '../../../../services/http'
+import { getAuthToken } from '../../../../services/auth'
 
 const UsersTable = ({ users }) => {
     const [page, setPage] = useState(0)
@@ -24,6 +26,21 @@ const UsersTable = ({ users }) => {
     const [userId, setUserId] = useState(null)
 
     const navigate = useNavigate()
+
+    const handleDelete = (id) => {
+        let confirm = window.confirm('Are you sure')
+        if (confirm) {
+            http.delete(`${API.USER}/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${getAuthToken()}`
+                }
+            }).then(res => {
+                window.location.reload()
+            }).catch(err => {
+                alert('Something went wrong')
+            })
+        }
+    }
 
     return (
         <>
@@ -71,7 +88,8 @@ const UsersTable = ({ users }) => {
                                     <TableCell>
                                         <Box
                                             sx={{
-                                                display: 'flex'
+                                                display: 'flex',
+                                                gap: '2px'
                                             }}
                                         >
                                             <Button
@@ -90,7 +108,7 @@ const UsersTable = ({ users }) => {
                                                     navigate(`${PATH.USER}/${item.id}`)
                                                 }}
                                             >Edit</Button>
-                                            <Button size="small">Delete</Button>
+                                            <Button size="small" variant='contained' color='error' onClick={() => handleDelete(item.id)}>Delete</Button>
                                         </Box>
                                     </TableCell>
                                 </TableRow>
