@@ -28,8 +28,8 @@ const Home = () => {
                             boxShadow: 1,
                         }}
                     >
-                        {!isRegister && <LoginSection />}
-                        {isRegister && <RegisterSection />}
+                        {!isRegister && <LoginSection setIsRegister={setIsRegister} />}
+                        {isRegister && <RegisterSection setIsRegister={setIsRegister} />}
                     </Box>
                 </Box>
             )}

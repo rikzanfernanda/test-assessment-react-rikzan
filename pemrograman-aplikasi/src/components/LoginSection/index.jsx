@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from "@mui/material"
+import { Box, Button, Link, TextField, Typography } from "@mui/material"
 import { useFormik } from "formik"
 import loginSchema from "../../utils/loginSchema"
 import http from '../../services/http'
@@ -6,7 +6,7 @@ import { API } from "../../config/path"
 import { useState } from "react"
 import { setAuthToken } from "../../context/authContext"
 
-const LoginSection = () => {
+const LoginSection = (props) => {
     const [isDisabled, setIsDisabled] = useState(false)
 
     const formik = useFormik({
@@ -91,11 +91,22 @@ const LoginSection = () => {
                             disabled={isDisabled}
                             sx={{
                                 position: 'relative',
+                                mb: '10px',
                             }}
                         >
                             {isDisabled && 'Loading...'}
                             {!isDisabled && 'Login'}
                         </Button>
+                        <Typography variant="body1">
+                            Belum punya akun? <Link href="#"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    props.setIsRegister(true)
+                                }}
+                            >
+                                Register
+                            </Link>
+                        </Typography>
                     </Box>
                 </Box>
             </form>
