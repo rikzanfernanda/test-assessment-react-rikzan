@@ -129,7 +129,7 @@ const NewUser = () => {
                                         label="Pria"
                                     />
                                     <FormControlLabel
-                                        value={'l'}
+                                        value={'w'}
                                         control={<Radio />}
                                         label="Wanita"
                                     />

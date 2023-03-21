@@ -88,7 +88,7 @@ const Home = () => {
                             display: 'inline-block',
                             width: {
                                 xs: '100%',
-                                md: '50%',
+                                md: '80%',
                                 lg: 'auto'
                             }
                         }}
