@@ -7,6 +7,7 @@ import http from '../../services/http'
 import { API, PATH } from '../../config/path'
 import UsersTable from './components/UsersTable'
 import { useNavigate } from 'react-router-dom'
+import { removeAuthToken } from '../../services/auth'
 
 const Home = () => {
     const [isRegister, setIsRegister] = useState(false)
@@ -16,21 +17,23 @@ const Home = () => {
     const navigate = useNavigate()
 
     const getUsers = useCallback(() => {
-        setIsLoading(true)
-        http.get(API.USER, {
-            headers: {
-                Authorization: `Bearer ${getAuthToken()}`
-            }
-        })
-            .then((res) => {
-                setUsers(res.data.data)
-                setIsLoading(false)
+        if (getAuthToken()) {
+            setIsLoading(true)
+            http.get(API.USER, {
+                headers: {
+                    Authorization: `Bearer ${getAuthToken()}`
+                }
             })
-            .catch((err) => {
-                alert('Something went wrong')
-                setIsLoading(false)
-            })
-    }, [])
+                .then((res) => {
+                    setUsers(res.data.data)
+                    setIsLoading(false)
+                })
+                .catch((err) => {
+                    alert('Something went wrong')
+                    setIsLoading(false)
+                })
+        }
+    }, [getAuthToken])
 
     useEffect(() => {
         getUsers()
@@ -104,13 +107,31 @@ const Home = () => {
                             <Typography variant="body1" fontWeight={'bold'}>
                                 Table of Users
                             </Typography>
-                            <Button
-                                size="small"
-                                variant="contained"
-                                onClick={() => navigate(PATH.NEW_USER)}
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    gap: 1
+                                }}
                             >
-                                Create New
-                            </Button>
+                                <Button
+                                    size="small"
+                                    variant="contained"
+                                    color='success'
+                                    onClick={() => navigate(PATH.NEW_USER)}
+                                >
+                                    Create New
+                                </Button>
+                                <Button
+                                    size="small"
+                                    variant="contained"
+                                    onClick={() => {
+                                        removeAuthToken()
+                                        window.location.reload()
+                                    }}
+                                >
+                                    Logout
+                                </Button>
+                            </Box>
                         </Box>
 
                         <Box
