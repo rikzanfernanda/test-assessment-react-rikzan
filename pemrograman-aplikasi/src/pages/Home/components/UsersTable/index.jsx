@@ -1,7 +1,6 @@
 import {
     Box,
     Button,
-    Dialog,
     Paper,
     Table,
     TableBody,
@@ -15,12 +14,16 @@ import {
 import { useState } from 'react'
 import dayjs from 'dayjs'
 import UserDetail from '../UserDetail'
+import { useNavigate } from 'react-router-dom'
+import { PATH } from '../../../../config/path'
 
 const UsersTable = ({ users }) => {
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(20)
     const [isOpen, setIsOpen] = useState(false)
     const [userId, setUserId] = useState(null)
+
+    const navigate = useNavigate()
 
     return (
         <>
@@ -40,9 +43,9 @@ const UsersTable = ({ users }) => {
                     <TableBody>
                         {(rowsPerPage > 0
                             ? users.slice(
-                                  page * rowsPerPage,
-                                  page * rowsPerPage + rowsPerPage
-                              )
+                                page * rowsPerPage,
+                                page * rowsPerPage + rowsPerPage
+                            )
                             : users
                         ).map((item, i) => {
                             return (
@@ -80,7 +83,13 @@ const UsersTable = ({ users }) => {
                                             >
                                                 View
                                             </Button>
-                                            <Button size="small">Edit</Button>
+                                            <Button size="small"
+                                                variant='contained'
+                                                color='primary'
+                                                onClick={() => {
+                                                    navigate(`${PATH.USER}/${item.id}`)
+                                                }}
+                                            >Edit</Button>
                                             <Button size="small">Delete</Button>
                                         </Box>
                                     </TableCell>
