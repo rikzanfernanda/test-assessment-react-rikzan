@@ -24,7 +24,7 @@ const NewUser = () => {
         initialValues: {
             name: '',
             address: '',
-            gender: 'p',
+            gender: 'l',
             born_date: ''
         },
         validationSchema: newUserSchema,
@@ -121,15 +121,16 @@ const NewUser = () => {
                                 <FormLabel>Gender</FormLabel>
                                 <RadioGroup
                                     name="gender"
-                                    defaultValue={formik.values.gender}
+                                    value={formik.values.gender}
+                                    onChange={formik.handleChange}
                                 >
                                     <FormControlLabel
-                                        value={'p'}
+                                        value={'l'}
                                         control={<Radio />}
                                         label="Pria"
                                     />
                                     <FormControlLabel
-                                        value={'w'}
+                                        value={'p'}
                                         control={<Radio />}
                                         label="Wanita"
                                     />
