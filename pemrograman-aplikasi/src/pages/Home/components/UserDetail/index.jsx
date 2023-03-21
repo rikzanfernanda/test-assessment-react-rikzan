@@ -1,10 +1,18 @@
-import { Button, Dialog, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material"
-import { Box } from "@mui/system"
-import { useCallback, useEffect, useState } from "react"
+import {
+    Button,
+    Dialog,
+    Table,
+    TableBody,
+    TableCell,
+    TableRow,
+    Typography
+} from '@mui/material'
+import { Box } from '@mui/system'
+import { useCallback, useEffect, useState } from 'react'
 import http from '../../../../services/http'
 import { API } from '../../../../config/path'
 import { getAuthToken } from '../../../../services/auth'
-import dayjs from "dayjs"
+import dayjs from 'dayjs'
 
 const UserDetail = (props) => {
     const [user, setUser] = useState(null)
@@ -15,12 +23,14 @@ const UserDetail = (props) => {
                 headers: {
                     Authorization: `Bearer ${getAuthToken()}`
                 }
-            }).then(res => {
-                setUser(res.data.data)
-            }).catch(err => {
-                alert('Something went wrong')
-                props.setIsOpen(false)
             })
+                .then((res) => {
+                    setUser(res.data.data)
+                })
+                .catch((err) => {
+                    alert('Something went wrong')
+                    props.setIsOpen(false)
+                })
         }
     }, [props.userId])
 
@@ -44,7 +54,9 @@ const UserDetail = (props) => {
                 }
             }}
         >
-            <Typography variant="body1" fontWeight={'bold'}>User Detail</Typography>
+            <Typography variant="body1" fontWeight={'bold'}>
+                User Detail
+            </Typography>
             <Box mt={2}>
                 {user && (
                     <Table>
@@ -55,19 +67,31 @@ const UserDetail = (props) => {
                             </TableRow>
                             <TableRow>
                                 <TableCell>Alamat</TableCell>
-                                <TableCell align="right">{user.address}</TableCell>
+                                <TableCell align="right">
+                                    {user.address}
+                                </TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Gender</TableCell>
-                                <TableCell align="right">{user.gender === 'p' ? 'Pria' : 'Wanita'}</TableCell>
+                                <TableCell align="right">
+                                    {user.gender === 'p' ? 'Pria' : 'Wanita'}
+                                </TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Tanggal Lahir</TableCell>
-                                <TableCell align="right">{dayjs(user.born_date).format('DD MMM, YYYY')}</TableCell>
+                                <TableCell align="right">
+                                    {dayjs(user.born_date).format(
+                                        'DD MMM, YYYY'
+                                    )}
+                                </TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Tanggal Input</TableCell>
-                                <TableCell align="right">{dayjs(user.created_at).format('DD MMM YYYY HH:mm:ss')}</TableCell>
+                                <TableCell align="right">
+                                    {dayjs(user.created_at).format(
+                                        'DD MMM YYYY HH:mm:ss'
+                                    )}
+                                </TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>

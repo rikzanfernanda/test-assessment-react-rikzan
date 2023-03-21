@@ -40,9 +40,9 @@ const UsersTable = ({ users }) => {
                     <TableBody>
                         {(rowsPerPage > 0
                             ? users.slice(
-                                page * rowsPerPage,
-                                page * rowsPerPage + rowsPerPage
-                            )
+                                  page * rowsPerPage,
+                                  page * rowsPerPage + rowsPerPage
+                              )
                             : users
                         ).map((item, i) => {
                             return (
@@ -50,9 +50,21 @@ const UsersTable = ({ users }) => {
                                     <TableCell>{i + 1}</TableCell>
                                     <TableCell>{item.name}</TableCell>
                                     <TableCell>{item.address}</TableCell>
-                                    <TableCell>{item.gender === 'p' ? 'Pria': 'Wanita'}</TableCell>
-                                    <TableCell>{dayjs(item.born_date).format('DD MMM, YYYY')}</TableCell>
-                                    <TableCell>{dayjs(item.created_at).format('DD MMM YYYY HH:mm:ss')}</TableCell>
+                                    <TableCell>
+                                        {item.gender === 'p'
+                                            ? 'Pria'
+                                            : 'Wanita'}
+                                    </TableCell>
+                                    <TableCell>
+                                        {dayjs(item.born_date).format(
+                                            'DD MMM, YYYY'
+                                        )}
+                                    </TableCell>
+                                    <TableCell>
+                                        {dayjs(item.created_at).format(
+                                            'DD MMM YYYY HH:mm:ss'
+                                        )}
+                                    </TableCell>
                                     <TableCell>
                                         <Box
                                             sx={{
@@ -92,7 +104,12 @@ const UsersTable = ({ users }) => {
                 </Table>
             </TableContainer>
 
-            <UserDetail isOpen={isOpen} setIsOpen={setIsOpen} userId={userId} setUserId={setUserId} />
+            <UserDetail
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                userId={userId}
+                setUserId={setUserId}
+            />
         </>
     )
 }
