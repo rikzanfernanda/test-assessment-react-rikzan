@@ -1,10 +1,10 @@
-import { Box, Button, Link, TextField, Typography } from "@mui/material"
-import { useFormik } from "formik"
+import { Box, Button, Link, TextField, Typography } from '@mui/material'
+import { useFormik } from 'formik'
 import http from '../../services/http'
-import { API } from "../../config/path"
-import { useState } from "react"
-import { setAuthToken } from "../../context/authContext"
-import registerSchema from "../../utils/registerSchema"
+import { API } from '../../config/path'
+import { useState } from 'react'
+import { setAuthToken } from '../../context/authContext'
+import registerSchema from '../../utils/registerSchema'
 
 const RegisterSection = (props) => {
     const [isDisabled, setIsDisabled] = useState(false)
@@ -13,7 +13,7 @@ const RegisterSection = (props) => {
         initialValues: {
             name: '',
             email: '',
-            password: '',
+            password: ''
         },
         validationSchema: registerSchema,
         onSubmit: (values) => {
@@ -35,7 +35,7 @@ const RegisterSection = (props) => {
     return (
         <Box
             sx={{
-                minWidth: '300px',
+                minWidth: '300px'
             }}
         >
             <Typography
@@ -43,7 +43,7 @@ const RegisterSection = (props) => {
                 sx={{
                     fontWeight: 'bold',
                     fontSize: '24px',
-                    mb: '10px',
+                    mb: '10px'
                 }}
             >
                 Register
@@ -53,62 +53,73 @@ const RegisterSection = (props) => {
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '10px',
+                        gap: '10px'
                     }}
                 >
                     <TextField
                         variant="standard"
-                        label='Name'
+                        label="Name"
                         size="small"
                         name="name"
                         fullWidth
                         value={formik.values.name}
                         onChange={formik.handleChange}
-                        error={formik.touched.name && Boolean(formik.errors.name)}
+                        error={
+                            formik.touched.name && Boolean(formik.errors.name)
+                        }
                         helperText={formik.touched.name && formik.errors.name}
                     />
                     <TextField
                         variant="standard"
-                        label='Email'
+                        label="Email"
                         size="small"
                         name="email"
                         fullWidth
                         value={formik.values.email}
                         onChange={formik.handleChange}
-                        error={formik.touched.email && Boolean(formik.errors.email)}
+                        error={
+                            formik.touched.email && Boolean(formik.errors.email)
+                        }
                         helperText={formik.touched.email && formik.errors.email}
                     />
                     <TextField
                         variant="standard"
-                        label='Password'
+                        label="Password"
                         name="password"
                         size="small"
                         fullWidth
-                        type='password'
+                        type="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        helperText={formik.touched.password && formik.errors.password}
+                        error={
+                            formik.touched.password &&
+                            Boolean(formik.errors.password)
+                        }
+                        helperText={
+                            formik.touched.password && formik.errors.password
+                        }
                     />
                     <Box
                         sx={{
-                            textAlign: 'right',
+                            textAlign: 'right'
                         }}
                     >
                         <Button
                             variant="contained"
-                            type='submit'
+                            type="submit"
                             disabled={isDisabled}
                             sx={{
                                 position: 'relative',
-                                mb: '10px',
+                                mb: '10px'
                             }}
                         >
                             {isDisabled && 'Loading...'}
                             {!isDisabled && 'Register'}
                         </Button>
                         <Typography variant="body1">
-                            Sudah punya akun? <Link href="#"
+                            Sudah punya akun?{' '}
+                            <Link
+                                href="#"
                                 onClick={(e) => {
                                     e.preventDefault()
                                     props.setIsRegister(false)

@@ -5,14 +5,11 @@ const registerSchema = yup.object().shape({
         .string()
         .required('Name is required')
         .min(8, 'Name must be at least 8 characters'),
-    email: yup
-        .string()
-        .email('Email is invalid')
-        .required('Email is required'),
+    email: yup.string().email('Email is invalid').required('Email is required'),
     password: yup
         .string()
         .required('Password is required')
-        .min(8, 'Password must be at least 8 characters'),
+        .min(8, 'Password must be at least 8 characters')
 })
 
 export default registerSchema

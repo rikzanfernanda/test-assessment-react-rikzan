@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie' 
+import Cookies from 'js-cookie'
 
 export const setAuthToken = (token) => {
     if (token) {
