@@ -34,11 +34,13 @@ const UsersTable = ({ users }) => {
                 headers: {
                     Authorization: `Bearer ${getAuthToken()}`
                 }
-            }).then(res => {
-                window.location.reload()
-            }).catch(err => {
-                alert('Something went wrong')
             })
+                .then((res) => {
+                    window.location.reload()
+                })
+                .catch((err) => {
+                    alert('Something went wrong')
+                })
         }
     }
 
@@ -60,9 +62,9 @@ const UsersTable = ({ users }) => {
                     <TableBody>
                         {(rowsPerPage > 0
                             ? users.slice(
-                                page * rowsPerPage,
-                                page * rowsPerPage + rowsPerPage
-                            )
+                                  page * rowsPerPage,
+                                  page * rowsPerPage + rowsPerPage
+                              )
                             : users
                         ).map((item, i) => {
                             return (
@@ -101,14 +103,28 @@ const UsersTable = ({ users }) => {
                                             >
                                                 View
                                             </Button>
-                                            <Button size="small"
-                                                variant='contained'
-                                                color='primary'
+                                            <Button
+                                                size="small"
+                                                variant="contained"
+                                                color="primary"
                                                 onClick={() => {
-                                                    navigate(`${PATH.USER}/${item.id}`)
+                                                    navigate(
+                                                        `${PATH.USER}/${item.id}`
+                                                    )
                                                 }}
-                                            >Edit</Button>
-                                            <Button size="small" variant='contained' color='error' onClick={() => handleDelete(item.id)}>Delete</Button>
+                                            >
+                                                Edit
+                                            </Button>
+                                            <Button
+                                                size="small"
+                                                variant="contained"
+                                                color="error"
+                                                onClick={() =>
+                                                    handleDelete(item.id)
+                                                }
+                                            >
+                                                Delete
+                                            </Button>
                                         </Box>
                                     </TableCell>
                                 </TableRow>

@@ -116,7 +116,7 @@ const Home = () => {
                                 <Button
                                     size="small"
                                     variant="contained"
-                                    color='success'
+                                    color="success"
                                     onClick={() => navigate(PATH.NEW_USER)}
                                 >
                                     Create New

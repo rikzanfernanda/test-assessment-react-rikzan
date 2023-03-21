@@ -1,13 +1,23 @@
-import { useCallback, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import http from '../../services/http'
 import { API, PATH } from '../../config/path'
-import { getAuthToken } from "../../services/auth"
-import { useFormik } from "formik"
-import newUserSchema from "../../utils/newUserSchema"
+import { getAuthToken } from '../../services/auth'
+import { useFormik } from 'formik'
+import newUserSchema from '../../utils/newUserSchema'
 import { useNavigate } from 'react-router-dom'
-import AppLayout from "../../layouts/AppLayout"
-import { Box, Button, FormControlLabel, FormLabel, Link, Radio, RadioGroup, TextField, Typography } from "@mui/material"
+import AppLayout from '../../layouts/AppLayout'
+import {
+    Box,
+    Button,
+    FormControlLabel,
+    FormLabel,
+    Link,
+    Radio,
+    RadioGroup,
+    TextField,
+    Typography
+} from '@mui/material'
 
 const iniUser = {
     name: '',
@@ -28,10 +38,9 @@ const EditUser = () => {
             headers: {
                 Authorization: `Bearer ${getAuthToken()}`
             }
+        }).then((res) => {
+            setUser(res.data.data)
         })
-            .then((res) => {
-                setUser(res.data.data)
-            })
     }, [id])
 
     useEffect(() => {
