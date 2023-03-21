@@ -32,7 +32,7 @@ const UserDetail = (props) => {
                     props.setIsOpen(false)
                 })
         }
-    }, [props.userId])
+    }, [props])
 
     useEffect(() => {
         getUser()

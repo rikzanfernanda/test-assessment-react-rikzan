@@ -33,7 +33,7 @@ const Home = () => {
                     setIsLoading(false)
                 })
         }
-    }, [getAuthToken])
+    }, [])
 
     useEffect(() => {
         getUsers()
