@@ -12,6 +12,7 @@ import {
     TableRow
 } from '@mui/material'
 import { useState } from 'react'
+import dayjs from 'dayjs'
 
 const UsersTable = ({ users }) => {
     const [page, setPage] = useState(0)
@@ -45,8 +46,8 @@ const UsersTable = ({ users }) => {
                                 <TableCell>{item.name}</TableCell>
                                 <TableCell>{item.address}</TableCell>
                                 <TableCell>{item.gender}</TableCell>
-                                <TableCell>{item.born_date}</TableCell>
-                                <TableCell>{item.created_at}</TableCell>
+                                <TableCell>{dayjs(item.born_date).format('DD MMM, YYYY')}</TableCell>
+                                <TableCell>{dayjs(item.created_at).format('DD MMM YYYY HH:mm:ss')}</TableCell>
                                 <TableCell>
                                     <Box
                                         sx={{
